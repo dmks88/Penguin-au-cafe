@@ -1,3 +1,38 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 body {
-    background-image: url("../images/store-bg.png");
+    background-image: url("../assets/images/store-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.scene {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+}
+
+#desk {
+    width: 100%;
+    z-index: 1;
+    display: block;
+}
+
+#cmachine {
+    position: absolute;
+    bottom: 62%;
+    left: 10%;
+    width: 30%;
+}
+
+#tab {
+    position: absolute;
+    bottom: 62%;
+    left: 45%;
+    width: 25%;
 }
