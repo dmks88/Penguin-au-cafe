@@ -11,6 +11,25 @@ body {
     background-size: cover;
 }
 
+.popup {
+    position: fixed;
+    inset: 0;
+    background: #00000080;
+    z-index: 999;
+}
+
+.popup img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 80vh;
+}
+
+.hidden {
+    display: none;
+}
+
 .scene {
     position: fixed;
     bottom: 0;
@@ -18,8 +37,9 @@ body {
 }
 
 #desk {
+    position: relative;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     display: block;
 }
 
@@ -27,6 +47,7 @@ body {
     position: absolute;
     bottom: 62%;
     left: 10%;
+    z-index: 3;
     width: 30%;
 }
 
@@ -34,5 +55,83 @@ body {
     position: absolute;
     bottom: 62%;
     left: 45%;
+    z-index: 3;
     width: 25%;
+    cursor: pointer;
+}
+
+#info {
+    position: absolute;
+    bottom: 5%;
+    left: 1%;
+    z-index: 3;
+    width: 4%;
+    cursor: pointer;
+}
+
+#sound {
+    position: absolute;
+    bottom: 5%;
+    right: 1%;
+    z-index: 3;
+    width: 4%;
+    cursor: pointer;
+}
+
+#action-alert {
+    position: absolute;
+    bottom: 150%;
+    left: 55.5%;
+    z-index: 3;
+    width: 4%;
+}
+
+#info-panel {
+    position: absolute;
+    bottom: 0%;
+    left: 25%;
+    z-index: 0;
+    width: 50%;
+}
+
+#penguin {
+    position: absolute;
+    bottom: 70%;
+    left: 60%;
+    width: 30%;
+    z-index: 1;
+}
+
+#bubble {
+    position: absolute;
+    bottom: 150%;
+    left: 17%;
+    z-index: 3;
+    width: 50%;
+}
+
+#start {
+    position: fixed;
+    inset: 0;
+    background: #00000080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+#start p {
+    color: white;
+    font-size: 50px;
+    font-weight: 200;
+    font-family: Pixelify Sans;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
 }

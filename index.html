@@ -6,11 +6,17 @@
     <title>Blok N Cafe</title>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="icon" href="assets/images/favicon.png" type="image/png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <audio id="backsound" loop>
         <source src="assets/sounds/backsound.mp3" type="audio/mpeg">
     </audio>
+    <div id="start">
+        <p>Tap anywhere to start</p>
+    </div>
     <div class="scene">
         <img 
             src="assets/images/desk.png" 
@@ -24,6 +30,30 @@
             src="assets/images/tab.png"
             alt="a tab."
             id="tab">
+        <img
+            src="assets/images/info.png"
+            alt="geme information."
+            id="info">
+        <img
+            src="assets/images/sound-on.png"
+            alt="sound-on info, click to turn off."
+            id="sound">
+        <img
+            src="assets/images/action-alert.png"
+            alt="click on the tab."
+            id="action-alert">
+        <img
+            src="assets/images/penguin.png"
+            alt="a penguin."
+            id="penguin">
+        <img
+            src="assets/images/bubble.png"
+            alt="bubble information."
+            id="bubble">
+    </div>
+    
+    <div id="popup" class="popup hidden">
+        <img id="popup-image" src="">
     </div>
 
     <script src="js/script.js"></script>
