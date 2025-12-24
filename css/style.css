@@ -14,16 +14,53 @@ body {
 .popup {
     position: fixed;
     inset: 0;
-    background: #00000080;
+    background: rgba(0, 0, 0, 0.5);
     z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.popup img {
+#popup-content {
+    position: relative;
+    width: 65%;
+}
+
+#popup-content img {
+    width: 100%;
+    display: block;
+}
+
+#tablet-grid {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    max-height: 80vh;
+    top: 7%;        
+    right: 35%;
+    bottom: %;
+    left: 6%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1%;
+}
+
+.grid-cell {
+    align-items: center;
+    justify-content: center;
+    background: #c5c7b1
+}
+
+.grid-cell img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.grid-cell img:hover {
+    transform: scale(1.08);
+}
+
+.grid-cell img:active {
+    transform: scale(1.15);
 }
 
 .hidden {
@@ -49,6 +86,7 @@ body {
     left: 10%;
     z-index: 3;
     width: 30%;
+    cursor: pointer;
 }
 
 #tab {
@@ -81,9 +119,10 @@ body {
 #action-alert {
     position: absolute;
     bottom: 150%;
-    left: 55.5%;
+    left: 57%;
     z-index: 3;
     width: 4%;
+    animation: float 1s ease-in-out infinite;
 }
 
 #info-panel {
@@ -104,10 +143,41 @@ body {
 
 #bubble {
     position: absolute;
-    bottom: 150%;
+    bottom: 60%;
     left: 17%;
+    width: 45%;
     z-index: 3;
-    width: 50%;
+}
+
+.bubble-img {
+    width: 100%;
+}
+
+.bubble-text {
+    position: absolute;
+    top: 4%;
+    left: 7%;
+    width: 62%;
+    text-align: left;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: clamp(14px, 2vw, 28px);
+    line-height: 1.4;
+    color: #110f0e;
+    word-wrap: break-word;
+}
+
+#open {
+    position: absolute;
+    bottom: 210%;
+    right: 13%;
+    z-index: 3;
+    cursor: pointer;
+    width: 12%;
+    filter: drop-shadow(0 0 10px rgba(133, 255, 114, 0.7));
+}
+
+#open.float {
+    animation: float 2s ease-in-out infinite;
 }
 
 #start {
@@ -124,14 +194,27 @@ body {
 
 #start p {
     color: white;
-    font-size: 50px;
+    font-size: clamp(30px, 4vw, 70px);
     font-weight: 200;
     font-family: Pixelify Sans;
     animation: pulse 3s infinite;
+}
+
+#bip {
+    position: absolute;
+    bottom: 15%;
+    right: 19%;
+    width: 4%;
+    animation: float 1.5s ease-in-out infinite ;
 }
 
 @keyframes pulse {
     0% { opacity: 0.2; }
     50% { opacity: 1; }
     100% { opacity: 0.2; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
 }
