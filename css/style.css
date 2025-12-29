@@ -21,9 +21,27 @@ body {
     justify-content: center;
 }
 
+#wrapper {
+    position: relative;
+    width: 100%;
+}
+
 #popup-content {
     position: relative;
     width: 65%;
+}
+
+#big-table {
+    position: absolute;
+    top: 6%;
+    left: 6.5%;
+    width: 126%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 3%;
+
+    z-index: 2;
 }
 
 #popup-content img {
@@ -31,17 +49,26 @@ body {
     display: block;
 }
 
-#tablet-grid {
-    position: absolute;
-    top: 7%;        
-    right: 35%;
-    bottom: %;
-    left: 6%;
+#cal-container {
+    position: relative;
+    text-align: left;
+    font-family: Pixelify Sans;
+    font-size: clamp(10px, 2vw, 14px);
+    line-height: 1.4;
+    color: #110f0e;
+    word-wrap: break-word;
+}
 
+#receipt {
+    position: relative;
+    width: 100%;
+}
+
+#tablet-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 1%;
+    gap: 2%;
 }
 
 .grid-cell {
@@ -159,7 +186,7 @@ body {
     left: 7%;
     width: 62%;
     text-align: left;
-    font-family: "Pixelify Sans", sans-serif;
+    font-family: Pixelify Sans;
     font-size: clamp(14px, 2vw, 28px);
     line-height: 1.4;
     color: #110f0e;
