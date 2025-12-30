@@ -33,14 +33,11 @@ body {
 
 #big-table {
     position: absolute;
-    top: 6%;
-    left: 6.5%;
-    width: 126%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 3%;
-
+    top: 15%;
+    left: 6.2%;
+    width: 90%;
+    display: flex;
+    gap: 2%;
     z-index: 2;
 }
 
@@ -51,20 +48,61 @@ body {
 
 #cal-container {
     position: relative;
-    text-align: left;
-    font-family: Pixelify Sans;
-    font-size: clamp(10px, 2vw, 14px);
+    text-align: right;
+    font-family: "Jersey 15", sans-serif;
     line-height: 1.4;
     color: #110f0e;
-    word-wrap: break-word;
+    width: 40%;
+    display: grid;
+    gap: 0.1rem;
+    justify-items: end;
 }
 
-#receipt {
-    position: relative;
+.receipt {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding-left: 0.2rem;
+}
+
+.receipt p {
+    margin: 7px;
+    overflow-wrap: anywhere;
+    color: #3a410b;
+    font-size: 2.2vw;
+    line-height: 0.8;
+}
+
+.price {
+    margin: 0px;
+    text-align: right; 
+    color: #3a410b;
+    font-size: 2.3vw;  
+}
+
+.menuname {
+    text-align: left;    
+}
+
+.totaltitle {
+    text-align: left;
+}
+
+#submit-container {
+    margin-top: auto;
+    border-top: 3px solid #878b6a;
+    display: grid;
+    gap: 0.2rem;
+}
+
+#list-container {
     width: 100%;
+    max-height: 55vh;
+    overflow-y: auto;
 }
 
 #tablet-grid {
+    width: 94%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -78,7 +116,6 @@ body {
 }
 
 .grid-cell img {
-    width: 100%;
     cursor: pointer;
 }
 
@@ -182,13 +219,13 @@ body {
 
 .bubble-text {
     position: absolute;
-    top: 4%;
+    top: 8%;
     left: 7%;
     width: 62%;
     text-align: left;
-    font-family: Pixelify Sans;
-    font-size: clamp(14px, 2vw, 28px);
-    line-height: 1.4;
+    font-family: "Jersey 15", sans-serif;
+    font-size: 2.1vw;
+    line-height: 1.3;
     color: #110f0e;
     word-wrap: break-word;
 }
@@ -221,9 +258,8 @@ body {
 
 #start p {
     color: white;
-    font-size: clamp(30px, 4vw, 70px);
-    font-weight: 200;
-    font-family: Pixelify Sans;
+    font-size: 5vw;
+    font-family: "Jersey 15", sans-serif;
     animation: pulse 3s infinite;
 }
 
@@ -233,6 +269,47 @@ body {
     right: 19%;
     width: 4%;
     animation: float 1.5s ease-in-out infinite ;
+}
+
+#primary-b {
+    padding: 0.4rem 1rem;
+    background-color: #3a410b;
+    color: #fff;
+    font-family: "Jersey 15", sans-serif;
+    font-size: 2vw;
+    border: none;
+    cursor: pointer;
+}
+
+#primary-b:hover {
+    background-color: #515a0e;
+    transform: scale(1.05);
+}
+
+#primary-b:active {
+    transform: scale(0.95);
+}
+
+.remove-btn {
+    background-color: transparent;
+    color: #3a410b;
+    font-family: "Jersey 15", sans-serif;
+    font-size: 2vw;
+    border: none;
+    cursor: pointer;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    padding-bottom: 0.3em;
+    padding-top: 0.3em;
+}
+
+.remove-btn:hover {
+    background-color: #9a9e7c;
+    transform: scale(1.05);
+}
+
+.remove-btn:active {
+    transform: scale(0.95);
 }
 
 @keyframes pulse {

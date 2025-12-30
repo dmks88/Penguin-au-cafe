@@ -8,8 +8,7 @@
     <link rel="icon" href="assets/images/favicon.png" type="image/png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
 <body>
     <audio id="backsound" loop>
         <source src="assets/sounds/backsound.mp3" type="audio/mpeg">
@@ -90,16 +89,20 @@
                         <div class="grid-cell"><img src="assets/images/sbread.png"></div>
                     </div>
                     <div id="cal-container">
-                        <div id="receipt">
-                            <p id="menuname">Cheesecake</p>
-                            <p id="price">35.000</p>
+                        <div id="list-container">
                         </div>
-                        <p id="total">test total</p>
-                        <button>SUBMIT</button>
+                        <div id="submit-container">
+                            <div class="receipt">
+                                <p class="totaltitle">Total</p>
+                                <p class="total">0</p>
+                            </div>
+                            <button id="primary-b">SUBMIT</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>

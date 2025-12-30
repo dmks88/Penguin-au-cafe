@@ -84,21 +84,19 @@ function openPopup(imageSrc) {
     clickSound.play().catch(() => {});
 }
 
-popup.addEventListener("pointerdown", () => {
-    popup.classList.add("hidden");
-    popupImage.src = "";
+popup.addEventListener("pointerdown", (e) => {
+    if (e.target === popup) {
+        popup.classList.add("hidden");
+        popupImage.src = "";
 
-    clickSound.currentTime = 0;
-    clickSound.play().catch(() => {});
+        clickSound.currentTime = 0;
+        clickSound.play().catch(() => {});
+    }
 });
 
 document.getElementById("tab").addEventListener("click", () => {
     openPopup("");
     tabletUi.classList.remove("hidden");
-});
-
-document.getElementById("info").addEventListener("click", () => {
-    openPopup("assets/images/info-panel.png");
 });
 
 // game start
@@ -151,3 +149,129 @@ function continueGame() {
 
 mC.addEventListener("pointerdown", continueGame);
 bubbleArea.addEventListener("pointerdown", continueGame);
+
+// calculator
+const menuData = {
+  "coffee.png":   { name: "Coffee", price: 25000 },
+  "frozen.png":   { name: "Frozen Drink", price: 30000 },
+  "matcha.png":   { name: "Matcha", price: 28000 },
+  "cheese.png":   { name: "Cheesecake", price: 35000 },
+  "bread.png":    { name: "Bread", price: 15000 },
+  "burger.png":   { name: "Burger", price: 40000 },
+  "crepes.png":   { name: "Crepes", price: 27000 },
+  "donut.png":    { name: "Donut", price: 18000 },
+  "sbread.png":   { name: "Sweet Bread", price: 20000 }
+};
+
+const gridImages = document.querySelectorAll("#tablet-grid img");
+const listContainer = document.getElementById("list-container");
+const totalEl = document.querySelector(".total");
+
+gridImages.forEach(img => {
+  img.addEventListener("click", () => {
+    const fileName = img.src.split("/").pop();
+    const item = menuData[fileName];
+
+    if (!item) return;
+
+    addItem(item.name, item.price);
+    updateTotal();
+  });
+});
+
+function addItem(name, price) {
+  const listItem = document.createElement("div");
+  listItem.classList.add("list-item");
+
+  listItem.innerHTML = `
+    <div class="receipt">
+      <p class="menuname">${name}</p>
+      <button class="remove-btn">x</button>
+    </div>
+    <div>
+      <p class="price">${formatPrice(price)}</p>
+    </div>
+  `;
+
+  // remove item
+  listItem.querySelector(".remove-btn").addEventListener("click", () => {
+    listItem.remove();
+    updateTotal();
+  });
+
+  listContainer.appendChild(listItem);
+}
+
+function updateTotal() {
+  let total = 0;
+
+  document.querySelectorAll(".list-item .price").forEach(priceEl => {
+    const value = priceEl.textContent.replace(".", "");
+    total += Number(value);
+  });
+
+  totalEl.textContent = formatPrice(total);
+}
+
+function formatPrice(number) {
+  return number.toLocaleString("id-ID");
+}
+
+// game logic
+let hasOrdered = false;
+let requiredOrder = {};
+
+requiredOrder = {
+  "Coffee": 1,
+  "Cheesecake": 1
+};
+
+document.getElementById("primary-b").addEventListener("click", () => {
+    const submittedOrder = {};
+
+    document.querySelectorAll(".list-item .menuname").forEach(p => {
+        const name = p.textContent;
+        if (!submittedOrder[name]) submittedOrder[name] = 0;
+        submittedOrder[name]++;
+    });
+
+    checkOrder(submittedOrder);
+});
+
+function checkOrder(submittedOrder) {
+    if (!hasOrdered) {
+        alert("Who’s gonna pay that?");
+        return;
+    }
+
+    // Check if order matches exactly
+    let correct = true;
+    for (const item in requiredOrder) {
+        if (submittedOrder[item] !== requiredOrder[item]) {
+            correct = false;
+            break;
+        }
+    }
+
+    // Also check for extra items
+    for (const item in submittedOrder) {
+        if (!requiredOrder[item]) correct = false;
+    }
+
+    if (correct) {
+        finishGame();
+    } else {
+        alert("MC repeats the order!");
+        // Optional: clear the list
+        listContainer.innerHTML = "";
+        updateTotal();
+    }
+}
+
+function finishGame() {
+    alert("Order correct! Game finished.");
+    // Hide tablet / show next scene
+    popup.classList.add("hidden");
+    tabletUi.classList.add("hidden");
+    // Add any end-game logic here
+}
