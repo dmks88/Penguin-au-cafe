@@ -166,6 +166,7 @@ const menuData = {
 const gridImages = document.querySelectorAll("#tablet-grid img");
 const listContainer = document.getElementById("list-container");
 const totalEl = document.querySelector(".total");
+const submitBtn = document.getElementById("primary-b");
 
 gridImages.forEach(img => {
   img.addEventListener("click", () => {
@@ -176,6 +177,7 @@ gridImages.forEach(img => {
 
     addItem(item.name, item.price);
     updateTotal();
+    updateSubmitState();
   });
 });
 
@@ -197,6 +199,7 @@ function addItem(name, price) {
   listItem.querySelector(".remove-btn").addEventListener("click", () => {
     listItem.remove();
     updateTotal();
+    updateSubmitState();
   });
 
   listContainer.appendChild(listItem);
@@ -206,16 +209,23 @@ function updateTotal() {
   let total = 0;
 
   document.querySelectorAll(".list-item .price").forEach(priceEl => {
-    const value = priceEl.textContent.replace(".", "");
+    const value = priceEl.textContent.replace(/\./g, "");
     total += Number(value);
   });
 
   totalEl.textContent = formatPrice(total);
 }
 
+function updateSubmitState() {
+  submitBtn.disabled = listContainer.children.length === 0;
+}
+
 function formatPrice(number) {
   return number.toLocaleString("id-ID");
 }
+
+updateSubmitState();
+
 
 // game logic
 let hasOrdered = false;
@@ -238,9 +248,21 @@ document.getElementById("primary-b").addEventListener("click", () => {
     checkOrder(submittedOrder);
 });
 
+const bubbleMe = document.getElementById("bubble-me");
+
+document.addEventListener("pointerdown", () => {
+  bubbleMe.classList.add("hidden");
+});
+
 function checkOrder(submittedOrder) {
     if (!hasOrdered) {
-        alert("Who’s gonna pay that?");
+        bubbleMe.classList.remove("hidden");
+        popup.classList.add("hidden");
+        bubbleMe.classList.add("shake");
+
+        bubbleMe.addEventListener("animationend", () => {
+        bubbleMe.classList.remove("shake");
+        }, { once: true });
         return;
     }
 
