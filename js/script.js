@@ -3,28 +3,33 @@ let isTyping = false;
 let typingInterval = null;
 
 // typewriter
-function typeWriter(element, text, speed = 30) {
-    isTyping = true;
-    element.textContent = "";
+function typeWriter(element, text) {
+    if (!element || !text) return;
 
+    clearInterval(typingInterval);
+    element.textContent = "";
     let index = 0;
+    isTyping = true;
 
     typingInterval = setInterval(() => {
-        element.textContent += text[index];
-        index++;
-
         if (index >= text.length) {
             clearInterval(typingInterval);
             isTyping = false;
+            return;
         }
-    }, speed);
+
+        element.textContent += text[index];
+        index++;
+    }, 18);
 }
 
 const bubbleText0 = document.getElementById("bubble-0");
 const bubbleText1 = document.getElementById("bubble-1");
+const bubbleConfirm = document.getElementById("bubble-confirm");
 
 const text0 = bubbleText0.textContent;
 const text1 = bubbleText1.textContent;
+const textconfirm = bubbleConfirm.textContent;
 
 // game start and audio begin
 const startOverlay = document.getElementById("start");
@@ -108,10 +113,18 @@ const actionAlert = document.getElementById("action-alert");
 openSign.addEventListener("pointerdown", () => {
     openSign.classList.add("hidden");
     mC.classList.remove("hidden");
-    bubbleArea.classList.remove("hidden");
 
+    bubbleArea.classList.remove("hidden");
     bubbleText0.classList.remove("hidden");
+
     bubbleText1.classList.add("hidden");
+    bubbleConfirm.classList.add("hidden");
+    actionAlert.classList.add("hidden");
+
+    listContainer.innerHTML = "";
+    updateTotal();
+
+    delete mC.dataset.readyForConfirm;
 
     typeWriter(bubbleText0, text0);
 
@@ -119,20 +132,31 @@ openSign.addEventListener("pointerdown", () => {
     bellSound.play().catch(() => {});
 });
 
+function finishTypingInstantly() {
+    clearInterval(typingInterval);
+    isTyping = false;
+
+    if (!bubbleText0.classList.contains("hidden")) {
+        bubbleText0.textContent = text0;
+    } else if (!bubbleText1.classList.contains("hidden")) {
+        bubbleText1.textContent = text1;
+    } else if (!bubbleConfirm.classList.contains("hidden")) {
+        bubbleConfirm.textContent = textconfirm;
+    }
+}
+
 function continueGame() {
+    const bubbleWrong = document.getElementById("bubble-wrong");
+    if (!bubbleWrong.classList.contains("hidden")) {
+        bubbleWrong.classList.add("hidden");
+        bubbleArea.classList.add("hidden");
+    }
+
     clickSound.currentTime = 0;
     clickSound.play().catch(() => {});
 
     if (isTyping) {
-        clearInterval(typingInterval);
-
-        if (!bubbleText0.classList.contains("hidden")) {
-            bubbleText0.textContent = text0;
-        } else {
-            bubbleText1.textContent = text1;
-        }
-
-        isTyping = false;
+        finishTypingInstantly();
         return;
     }
 
@@ -140,15 +164,83 @@ function continueGame() {
         bubbleText0.classList.add("hidden");
         bubbleText1.classList.remove("hidden");
         typeWriter(bubbleText1, text1);
+
+        hasOrdered = true;
         return;
     }
 
-    bubbleArea.classList.add("hidden");
-    actionAlert.classList.remove("hidden");
+    if (!bubbleText1.classList.contains("hidden")) {
+        bubbleText1.classList.add("hidden");
+        bubbleArea.classList.add("hidden");
+        actionAlert.classList.remove("hidden");
+
+        mC.dataset.readyForConfirm = "true";
+        return;
+    }
+
+    if (!bubbleConfirm.classList.contains("hidden")) {
+        bubbleConfirm.classList.add("hidden");
+        bubbleArea.classList.add("hidden");
+        actionAlert.classList.remove("hidden");
+        return;
+    }
 }
 
-mC.addEventListener("pointerdown", continueGame);
 bubbleArea.addEventListener("pointerdown", continueGame);
+
+mC.addEventListener("pointerdown", () => {
+    const bubbleWrong = document.getElementById("bubble-wrong");
+    if (!bubbleWrong.classList.contains("hidden")) {
+        bubbleWrong.classList.add("hidden");
+        bubbleArea.classList.add("hidden");
+        return;
+    }
+
+    if (isTyping) {
+        finishTypingInstantly();
+        return;
+    }
+
+    if (!bubbleConfirm.classList.contains("hidden")) {
+        bubbleConfirm.classList.add("hidden");
+        bubbleArea.classList.add("hidden");
+        actionAlert.classList.remove("hidden");
+        return;
+    }
+
+    if (!bubbleText0.classList.contains("hidden")) {
+        bubbleText0.classList.add("hidden");
+        bubbleText1.classList.remove("hidden");
+        typeWriter(bubbleText1, text1);
+
+        hasOrdered = true;
+        return;
+    }
+
+    if (!bubbleText1.classList.contains("hidden")) {
+        bubbleText1.classList.add("hidden");
+        bubbleArea.classList.add("hidden");
+        actionAlert.classList.remove("hidden");
+
+        mC.dataset.readyForConfirm = "true";
+        return;
+    }
+
+    if (
+        bubbleArea.classList.contains("hidden") &&
+        mC.dataset.readyForConfirm === "true"
+    ) {
+        bubbleArea.classList.remove("hidden");
+        bubbleConfirm.classList.remove("hidden");
+        typeWriter(bubbleConfirm, textconfirm);
+
+        mC.classList.add("shake");
+        mC.addEventListener("animationend", () => {
+            mC.classList.remove("shake");
+        }, { once: true });
+        return;
+    }
+});
 
 // calculator
 const menuData = {
@@ -250,32 +342,21 @@ document.getElementById("primary-b").addEventListener("click", () => {
 
 const bubbleMe = document.getElementById("bubble-me");
 
-document.addEventListener("pointerdown", () => {
-  bubbleMe.classList.add("hidden");
-});
-
 function checkOrder(submittedOrder) {
     if (!hasOrdered) {
         bubbleMe.classList.remove("hidden");
         popup.classList.add("hidden");
         bubbleMe.classList.add("shake");
-
         bubbleMe.addEventListener("animationend", () => {
-        bubbleMe.classList.remove("shake");
+            bubbleMe.classList.remove("shake");
         }, { once: true });
         return;
     }
 
-    // Check if order matches exactly
     let correct = true;
     for (const item in requiredOrder) {
-        if (submittedOrder[item] !== requiredOrder[item]) {
-            correct = false;
-            break;
-        }
+        if (submittedOrder[item] !== requiredOrder[item]) correct = false;
     }
-
-    // Also check for extra items
     for (const item in submittedOrder) {
         if (!requiredOrder[item]) correct = false;
     }
@@ -283,17 +364,63 @@ function checkOrder(submittedOrder) {
     if (correct) {
         finishGame();
     } else {
-        alert("MC repeats the order!");
-        // Optional: clear the list
+        const bubbleWrong = document.getElementById("bubble-wrong");
+        popup.classList.add("hidden");
+        bubbleArea.classList.remove("hidden");
+        bubbleWrong.classList.remove("hidden");
+
+        bubbleText1.classList.add("hidden");
+        bubbleConfirm.classList.add("hidden");
+
+        bubbleWrong.classList.add("shake");
+        bubbleWrong.addEventListener("animationend", () => {
+            bubbleWrong.classList.remove("shake");
+        }, { once: true });
+
+        // Reset list
         listContainer.innerHTML = "";
         updateTotal();
     }
 }
 
+document.addEventListener("pointerdown", () => {
+  bubbleMe.classList.add("hidden");
+});
+
+const orderShown = document.getElementById("order");
+const bubbleEnd = document.getElementById("bubble-end");
+
 function finishGame() {
-    alert("Order correct! Game finished.");
-    // Hide tablet / show next scene
+    bubbleArea.classList.remove("hidden");
+    bubbleText1.classList.add("hidden");
+    bubbleEnd.classList.remove("hidden");
+    orderShown.classList.remove("hidden");
+    actionAlert.classList.add("hidden");
     popup.classList.add("hidden");
-    tabletUi.classList.add("hidden");
-    // Add any end-game logic here
-}
+
+    const resetHandler = () => {
+        bubbleText0.classList.add("hidden");
+        bubbleText1.classList.add("hidden");
+        bubbleConfirm.classList.add("hidden");
+        bubbleEnd.classList.add("hidden");
+        bubbleMe.classList.add("hidden");
+        orderShown.classList.add("hidden");
+        const bubbleWrong = document.getElementById("bubble-wrong");
+        bubbleWrong.classList.add("hidden");
+
+        mC.classList.add("hidden");
+        delete mC.dataset.readyForConfirm;
+
+        hasOrdered = false;
+
+        listContainer.innerHTML = "";
+        totalEl.textContent = "0";
+
+        bubbleArea.classList.add("hidden");
+        openSign.classList.remove("hidden");
+
+        document.removeEventListener("pointerdown", resetHandler);
+    };
+
+    document.addEventListener("pointerdown", resetHandler, { once: true });
+  }
