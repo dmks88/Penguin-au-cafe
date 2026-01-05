@@ -9,123 +9,125 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
 <body>
-    <audio id="backsound" loop>
-        <source src="assets/sounds/backsound.mp3" type="audio/mpeg">
-    </audio>
-    <div id="start">
-        <p>Tap anywhere to start</p>
-    </div>
-    <div class="scene">
-        <img 
-            src="assets/images/desk.png" 
-            alt="a wood desk"
-            id="desk">
-        <img
-            src="assets/images/cmachine.gif"
-            alt="a black coffee machine."
-            id="cmachine">
-        <img
-            src="assets/images/tab.png"
-            alt="a tab."
-            id="tab">
-        <img
-            src="assets/images/info.png"
-            alt="geme information."
-            id="info">
-        <img
-            src="assets/images/sound-on.png"
-            alt="sound toggle, click to turn off."
-            id="sound">
-        <img
-            src="assets/images/action-alert.png"
-            alt="click on the tab."
-            id="action-alert"
-            class="action-alert hidden">
-        <img
-            src="assets/images/penguin.png"
-            alt="a penguin."
-            id="penguin"
-            class="penguin hidden">
-        <div id="order" class="order hidden">
-            <img 
-                src="assets/images/coffee.png"
-                id="order-coffee">
-            <img 
-                src="assets/images/cheese.png"
-                id="order-cheese">
+    <div id="app-root">
+        <audio id="backsound" loop>
+            <source src="assets/sounds/backsound.mp3" type="audio/mpeg">
+        </audio>
+        <div id="start">
+            <p>Tap anywhere to start</p>
         </div>
-    </div>
+        <div class="scene">
+            <img 
+                src="assets/images/desk.png" 
+                alt="a wood desk"
+                id="desk">
+            <img
+                src="assets/images/cmachine.gif"
+                alt="a black coffee machine."
+                id="cmachine">
+            <img
+                src="assets/images/tab.png"
+                alt="a tab."
+                id="tab">
+            <img
+                src="assets/images/info.png"
+                alt="geme information."
+                id="info">
+            <img
+                src="assets/images/sound-on.png"
+                alt="sound toggle, click to turn off."
+                id="sound">
+            <img
+                src="assets/images/action-alert.png"
+                alt="click on the tab."
+                id="action-alert"
+                class="action-alert hidden">
+            <img
+                src="assets/images/penguin.png"
+                alt="a penguin."
+                id="penguin"
+                class="penguin hidden">
+            <div id="order" class="order hidden">
+                <img 
+                    src="assets/images/coffee.png"
+                    id="order-coffee">
+                <img 
+                    src="assets/images/cheese.png"
+                    id="order-cheese">
+            </div>
+        </div>
 
-    <img
-        src="assets/images/open.png"
-        alt="open sign."
-        id="open"
-        class="open hidden">
+        <img
+            src="assets/images/open.png"
+            alt="open sign."
+            id="open"
+            class="open hidden">
 
-    <div id="bubble" class="bubble hidden">
-        <img
-            src="assets/images/bubble.png"
-            alt="bubble information."
-            class="bubble-img">
-        <img
-            src="assets/images/bip.png"
-            id="bip">
-        <p class="bubble-text" id="bubble-0">
-            Hello...
-        </p>
+        <div id="bubble" class="bubble hidden">
+            <img
+                src="assets/images/bubble.png"
+                alt="bubble information."
+                class="bubble-img">
+            <img
+                src="assets/images/bip.png"
+                id="bip">
+            <p class="bubble-text" id="bubble-0">
+                Hello...
+            </p>
 
-        <p class="bubble-text hidden" id="bubble-1">
-            I would like a Sweet Japanese Iced Coffee and a Truffle Cheesecake please :D
-        </p>
-        <p class="bubble-text hidden" id="bubble-confirm">
-            Yes, a Sweet Japanese Iced Coffee and a Truffle Cheesecake..
-        </p>
-        <p class="bubble-text hidden" id="bubble-wrong">
-            I don’t think that’s what I ordered. Could I get a sweet Japanese iced coffee and a truffle cheesecake?
-        </p>
-        <p class="bubble-text hidden" id="bubble-end">
-            Thank you!
-        </p>
-    </div>
+            <p class="bubble-text hidden" id="bubble-1">
+                I would like a Sweet Japanese Iced Coffee and a Truffle Cheesecake please :D
+            </p>
+            <p class="bubble-text hidden" id="bubble-confirm">
+                Yes, a Sweet Japanese Iced Coffee and a Truffle Cheesecake..
+            </p>
+            <p class="bubble-text hidden" id="bubble-wrong">
+                I don’t think that’s what I ordered. Could I get a sweet Japanese iced coffee and a truffle cheesecake?
+            </p>
+            <p class="bubble-text hidden" id="bubble-end">
+                Thank you!
+            </p>
+        </div>
 
-    <div id="bubble-me" class="bubble-me hidden">
-        <img
-            src="assets/images/bubble-2.png"
-            class="bubble-me-img">
-        <img
-            src="assets/images/bip.png"
-            id="bip-2">
-        <p class="bubble-me-text" id="bubble-me-text">
-            Who's paying for that...
-        </p>
-    </div>
-    
-    <div id="popup" class="popup hidden">
-        <div id="popup-content">
-            <img id="popup-image" src="">
-            <div id="wrapper">
-                <img src="assets/images/tablet.png">
-                <div id="big-table">
-                    <div id="tablet-grid" class="tablet-grid hidden">
-                        <div class="grid-cell"><img src="assets/images/coffee.png"></div>
-                        <div class="grid-cell"><img src="assets/images/frozen.png"></div>
-                        <div class="grid-cell"><img src="assets/images/matcha.png"></div>
-                        <div class="grid-cell"><img src="assets/images/cheese.png"></div>
-                        <div class="grid-cell"><img src="assets/images/bread.png"></div>
-                        <div class="grid-cell"><img src="assets/images/burger.png"></div>
-                        <div class="grid-cell"><img src="assets/images/crepes.png"></div>
-                        <div class="grid-cell"><img src="assets/images/donut.png"></div>
-                        <div class="grid-cell"><img src="assets/images/sbread.png"></div>
-                    </div>
-                    <div id="cal-container">
-                        <div id="list-container">
+        <div id="bubble-me" class="bubble-me hidden">
+            <img
+                src="assets/images/bubble-2.png"
+                class="bubble-me-img">
+            <img
+                src="assets/images/bip.png"
+                id="bip-2">
+            <p class="bubble-me-text" id="bubble-me-text">
+                Who's paying for that...
+            </p>
+        </div>
+        
+        <div id="popup" class="popup hidden">
+            <div id="popup-content">
+                <img id="popup-image" src="">
+                <div id="wrapper">
+                    <img src="assets/images/tablet.png">
+                    <div id="big-table">
+                        <div id="tablet-grid" class="tablet-grid hidden">
+                            <div class="grid-cell"><img src="assets/images/coffee.png"></div>
+                            <div class="grid-cell"><img src="assets/images/frozen.png"></div>
+                            <div class="grid-cell"><img src="assets/images/matcha.png"></div>
+                            <div class="grid-cell"><img src="assets/images/cheese.png"></div>
+                            <div class="grid-cell"><img src="assets/images/bread.png"></div>
+                            <div class="grid-cell"><img src="assets/images/burger.png"></div>
+                            <div class="grid-cell"><img src="assets/images/crepes.png"></div>
+                            <div class="grid-cell"><img src="assets/images/donut.png"></div>
+                            <div class="grid-cell"><img src="assets/images/sbread.png"></div>
                         </div>
-                        <div id="submit-container">
-                            <div class="receipt">
-                                <p class="totaltitle">Total</p>
-                                <p class="total">0</p>
+                        <div id="cal-container">
+                            <div id="list-container">
                             </div>
-                            <button id="primary-b">SUBMIT</button>
+                            <div id="submit-container">
+                                <div class="receipt">
+                                    <p class="totaltitle">Total</p>
+                                    <p class="total">0</p>
+                                </div>
+                                <button id="primary-b">SUBMIT</button>
+                            </div>
                         </div>
                     </div>
                 </div>

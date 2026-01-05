@@ -1,7 +1,9 @@
 html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -9,37 +11,48 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    width: 100%;
-    height: 100%;
 }
 
-/#wrapper {
+#app-root {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     transform: none;
-    width: 100%;
-    height: 100%;
 }
 
-/* Mobile: Rotate to landscape automatically */
-@media only screen and (max-width: 768px) {
-    body, html {
-        overflow: hidden; /* prevent scrollbars */
-        width: 100vh;     /* swap width/height */
-        height: 100vw;
+@media (max-aspect-ratio: 1/1) {
+    
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
     }
 
-    #wrapper {
-        transform: rotate(-90deg);   /* rotate content */
-        transform-origin: top left;  /* pivot from top left corner */
-        width: 100vh;                /* swapped dimensions */
-        height: 100vw;
+    #app-root {
         position: absolute;
-        top: 100%;                   /* shift into view */
+        top: 100%;
         left: 0;
+
+        width: 100vh;
+        height: 100vw;
+
+        transform: rotate(-90deg);
+        transform-origin: top left;
+    }
+
+    .bubble-text,
+    .bubble-me-text {
+        font-size: clamp(10px, 2.8vw, 18px) !important;
+    }
+
+    .receipt p,
+    .price {
+        font-size: clamp(10px, 2.8vw, 18px) !important;
     }
 }
 
 .popup {
-    position: fixed;
+    position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
@@ -161,15 +174,15 @@ body {
 }
 
 .scene {
-    position: fixed;
+    position: absolute;
     bottom: 0;
-    width: 100vw;
+    width: 100%;
 }
 
 #desk {
     position: relative;
     width: 100%;
-    z-index: 2;
+    height: auto;
     display: block;
 }
 
