@@ -1,4 +1,4 @@
-#### CS50-Final-Work - Della m. k. - 2026
+#### CS50-Final-Work - Della M. K. - 2026
 
 ---
 
