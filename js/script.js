@@ -102,6 +102,23 @@ document.getElementById("tab").addEventListener("click", () => {
     openPopup("");
 });
 
+// credit popup
+const creditpopup = document.getElementById("credit");
+const infobtn = document.getElementById("info");
+
+infobtn.addEventListener("pointerdown", (e) => {
+    creditpopup.classList.remove("hidden");
+
+    clickSound.currentTime = 0;
+    clickSound.play().catch(() => {});
+});
+
+creditpopup.addEventListener("pointerdown", (e) => {
+    if (e.target === creditpopup) {
+        creditpopup.classList.add("hidden");
+    }
+});
+
 // game start
 const mC = document.getElementById("penguin");
 const bubbleArea = document.getElementById("bubble");
@@ -245,15 +262,15 @@ mC.addEventListener("pointerdown", () => {
 
 // calculator
 const menuData = {
-  "coffee.png":   { name: "Coffee", price: 25000 },
-  "frozen.png":   { name: "Frozen Drink", price: 30000 },
-  "matcha.png":   { name: "Matcha", price: 28000 },
-  "cheese.png":   { name: "Cheesecake", price: 35000 },
-  "bread.png":    { name: "Bread", price: 15000 },
-  "burger.png":   { name: "Burger", price: 40000 },
-  "crepes.png":   { name: "Crepes", price: 27000 },
-  "donut.png":    { name: "Donut", price: 18000 },
-  "sbread.png":   { name: "Sweet Bread", price: 20000 }
+  "coffee.png":   { name: "Sweet Japanese Iced Coffee", price: 55000 },
+  "frozen.png":   { name: "-86° Coffee Latte", price: 30000 },
+  "matcha.png":   { name: "Matcha Cream Latte", price: 60000 },
+  "cheese.png":   { name: "Truffle Cheesecake", price: 58000 },
+  "bread.png":    { name: "Garlic Salt Bread", price: 37000 },
+  "burger.png":   { name: "Classic Cheese Burger", price: 75000 },
+  "crepes.png":   { name: "Tiramisu Chessetart", price: 55000 },
+  "donut.png":    { name: "Double Matcha Donut", price: 35000 },
+  "sbread.png":   { name: "Salt Bread Truffle Egg", price: 37000 }
 };
 
 const gridImages = document.querySelectorAll("#tablet-grid img");

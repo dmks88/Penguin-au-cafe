@@ -16,7 +16,6 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-
     background-image: url("../assets/images/store-bg.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -52,6 +51,11 @@ body {
     .price {
         font-size: clamp(10px, 2.8vw, 18px) !important;
     }
+
+    .credit-section {
+         font-size: clamp(7px, 2.8vw, 18px) !important;
+    }
+
 }
 
 .popup {
@@ -75,28 +79,29 @@ body {
     position: absolute;
     bottom: 0;
     width: 52%;
-    display: block;
+    display: flex;
     left: 24%;
     z-index: 1;
 }
 
-#text-container {
+.credit-section {
     position: absolute;
     z-index: 2;
     bottom: 0;
     width: 42%;
     left: 29.5%;
-    max-height: 85%;
+    top: 25%;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 3vh;
-}
-
-#credit p {
     font-family: "Jersey 15", sans-serif;
     font-size: 1.8vw;
     line-height: 1.4;
     color: #110f0e;
+}
+
+a {
+  color: #2d2d2d;
 }
 
 #wrapper {
