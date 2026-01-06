@@ -351,8 +351,8 @@ let hasOrdered = false;
 let requiredOrder = {};
 
 requiredOrder = {
-  "Coffee": 1,
-  "Cheesecake": 1
+  "Sweet Japanese Iced Coffee": 1,
+  "Truffle Cheesecake": 1
 };
 
 document.getElementById("primary-b").addEventListener("click", () => {
