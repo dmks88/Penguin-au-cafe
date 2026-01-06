@@ -459,6 +459,7 @@ function finishGame() {
 
         document.removeEventListener("pointerdown", resetHandler);
     };
+    
 
     document.addEventListener("pointerdown", resetHandler, { once: true });
   }
