@@ -7,17 +7,20 @@ html, body {
 }
 
 body {
-    background-image: url("../assets/images/store-bg.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 #app-root {
     position: relative;
     width: 100vw;
     height: 100vh;
-    transform: none;
+
+    background-image: url("../assets/images/store-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 @media (max-aspect-ratio: 1/1) {
@@ -61,6 +64,41 @@ body {
     justify-content: center;
 }
 
+.credit {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#credit img {
+    position: absolute;
+    bottom: 0;
+    width: 52%;
+    display: block;
+    left: 24%;
+    z-index: 1;
+}
+
+#text-container {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    width: 42%;
+    left: 29.5%;
+    max-height: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 3vh;
+}
+
+#credit p {
+    font-family: "Jersey 15", sans-serif;
+    font-size: 1.8vw;
+    line-height: 1.4;
+    color: #110f0e;
+}
+
 #wrapper {
     position: relative;
     width: 100%;
@@ -77,9 +115,10 @@ body {
     left: 6.2%;
     width: 90%;
     display: flex;
-    max-height: 180px;
+    flex-wrap: nowrap;
     gap: 2%;
     z-index: 2;
+    height: 68%;
 }
 
 #popup-content img {
@@ -94,9 +133,10 @@ body {
     line-height: 1.4;
     color: #110f0e;
     width: 40%;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 0.1rem;
-    justify-items: end;
+    height: 100%
 }
 
 .receipt {
@@ -107,7 +147,7 @@ body {
 }
 
 .receipt p {
-    margin: 7px;
+    margin: 0.3em;
     overflow-wrap: anywhere;
     color: #3a410b;
     font-size: 2.2vw;
@@ -130,17 +170,20 @@ body {
 }
 
 #submit-container {
-    margin-top: auto;
     border-top: 3px solid #878b6a;
     display: grid;
     gap: 0.2rem;
+    margin-left: 0.3em;
+    flex-shrink: 0;
 }
 
 #list-container {
     width: 100%;
-    max-height: 55vh;
+    flex: 1;
     overflow-y: auto;
-    height: 200px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    min-height: 0;
 }
 
 #tablet-grid {
@@ -152,9 +195,10 @@ body {
 }
 
 .grid-cell {
+    display: flex;
     align-items: center;
     justify-content: center;
-    background: #c5c7b1
+    background: #c5c7b1;
 }
 
 .grid-cell img {
@@ -184,6 +228,7 @@ body {
     width: 100%;
     height: auto;
     display: block;
+    z-index: 2;
 }
 
 #cmachine {
@@ -329,9 +374,6 @@ body {
 
 #open.float {
     animation: float 2s ease-in-out infinite;
-}
-
-.order {
 }
 
 #order-coffee {

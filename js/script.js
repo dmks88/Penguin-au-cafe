@@ -43,12 +43,18 @@ function startGame() {
     startOverlay.remove();
 }
 
-startOverlay.addEventListener("pointerdown", startGame, { once: true });
+const soundBtn = document.getElementById("sound");
+
+startOverlay.addEventListener("click", startGame, { once: true });
 
 // sounds
-const soundBtn = document.getElementById("sound");
 const clickSound = new Audio("assets/sounds/click.mp3");
 const steamHissing = new Audio("assets/sounds/steam.mp3");
+const kaching = new Audio("assets/sounds/money.mp3");
+const wrong = new Audio("assets/sounds/wrong.mp3");
+const click2 = new Audio("assets/sounds/click2.mp3");
+const deleteSound = new Audio("assets/sounds/delete.mp3");
+const clickpop = new Audio("assets/sounds/clickpop.mp3");
 
 let isMuted = false;
 
@@ -56,19 +62,16 @@ soundBtn.addEventListener("pointerdown", () => {
     isMuted = !isMuted;
 
     if (isMuted) {
-        bgMusic.muted = true;
+        bgMusic.volume = 0;
         soundBtn.src = "assets/images/sound-off.png";
-
-        clickSound.currentTime = 0;
-        clickSound.play().catch(() => {});
     } else {
-        bgMusic.muted = false;
+        bgMusic.volume = 1;
         bgMusic.play().catch(() => {});
         soundBtn.src = "assets/images/sound-on.png";
-
-        clickSound.currentTime = 0;
-        clickSound.play().catch(() => {});
     }
+
+    clickSound.currentTime = 0;
+    clickSound.play().catch(() => {});
 });
 
 cmachine.addEventListener("pointerdown", () => {
@@ -79,7 +82,6 @@ cmachine.addEventListener("pointerdown", () => {
 // popup
 const popup = document.getElementById("popup");
 const popupImage = document.getElementById("popup-image");
-const tabletUi = document.getElementById("tabletui");
 
 function openPopup(imageSrc) {
     popupImage.src = imageSrc;
@@ -93,15 +95,11 @@ popup.addEventListener("pointerdown", (e) => {
     if (e.target === popup) {
         popup.classList.add("hidden");
         popupImage.src = "";
-
-        clickSound.currentTime = 0;
-        clickSound.play().catch(() => {});
     }
 });
 
 document.getElementById("tab").addEventListener("click", () => {
     openPopup("");
-    tabletUi.classList.remove("hidden");
 });
 
 // game start
@@ -152,8 +150,8 @@ function continueGame() {
         bubbleArea.classList.add("hidden");
     }
 
-    clickSound.currentTime = 0;
-    clickSound.play().catch(() => {});
+    clickpop.currentTime = 0;
+    clickpop.play().catch(() => {});
 
     if (isTyping) {
         finishTypingInstantly();
@@ -195,6 +193,9 @@ mC.addEventListener("pointerdown", () => {
         bubbleArea.classList.add("hidden");
         return;
     }
+
+    clickpop.currentTime = 0;
+    clickpop.play().catch(() => {});
 
     if (isTyping) {
         finishTypingInstantly();
@@ -265,6 +266,9 @@ gridImages.forEach(img => {
     const fileName = img.src.split("/").pop();
     const item = menuData[fileName];
 
+    click2.currentTime = 0;
+    click2.play().catch(() => {});
+
     if (!item) return;
 
     addItem(item.name, item.price);
@@ -292,6 +296,9 @@ function addItem(name, price) {
     listItem.remove();
     updateTotal();
     updateSubmitState();
+
+    deleteSound.currentTime = 0;
+    deleteSound.play().catch(() => {});
   });
 
   listContainer.appendChild(listItem);
@@ -350,6 +357,9 @@ function checkOrder(submittedOrder) {
         bubbleMe.addEventListener("animationend", () => {
             bubbleMe.classList.remove("shake");
         }, { once: true });
+
+        wrong.currentTime = 0;
+        wrong.play().catch(() => {});
         return;
     }
 
@@ -377,7 +387,9 @@ function checkOrder(submittedOrder) {
             bubbleWrong.classList.remove("shake");
         }, { once: true });
 
-        // Reset list
+        wrong.currentTime = 0;
+        wrong.play().catch(() => {});
+
         listContainer.innerHTML = "";
         updateTotal();
     }
@@ -394,9 +406,15 @@ function finishGame() {
     bubbleArea.classList.remove("hidden");
     bubbleText1.classList.add("hidden");
     bubbleEnd.classList.remove("hidden");
+    bubbleConfirm.classList.add("hidden");
     orderShown.classList.remove("hidden");
     actionAlert.classList.add("hidden");
+    const bubbleWrong = document.getElementById("bubble-wrong");
+    bubbleWrong.classList.add("hidden");
     popup.classList.add("hidden");
+
+    kaching.currentTime = 0;
+    kaching.play().catch(() => {});
 
     const resetHandler = () => {
         bubbleText0.classList.add("hidden");
