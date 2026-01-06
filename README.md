@@ -30,6 +30,7 @@ Language: HTML, CSS, and JavaScript
 
 ---
 ### License
+
 The source code is publicly visible for reference only. Usage, modification, or redistribution is not permitted unless explicitly authorized by the author.
 ---
 
