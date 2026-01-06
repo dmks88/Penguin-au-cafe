@@ -1,3 +1,6 @@
+// Copyright © 2026 Della M. K.
+// All rights reserved. See LICENSE file.
+
 // global
 let isTyping = false;
 let typingInterval = null;

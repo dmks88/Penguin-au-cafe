@@ -29,6 +29,9 @@ A web-based game where you play as a café cashier, taking orders and serving th
 Language: HTML, CSS, and JavaScript
 
 ---
+### License
+The source code is publicly visible for reference only. Usage, modification, or redistribution is not permitted unless explicitly authorized by the author.
+---
 
 ### Developer Note
 I created this game because I wanted it to be easily shared and played on both phones and desktops without prior instalation, so a website became my choice.
@@ -42,7 +45,7 @@ Honestly, during development I often thought about changing the penguin to anoth
 ### Credits
 
 Visual assets
--   All visuals and sprites created by me.
+-   All visuals created by the author.
 
 Sounds assets
 - [DRAGON-STUDIO](https://pixabay.com/users/dragon-studio-38165424/) ·  [Pixabay](https://pixabay.com/sound-effects/steam-hissing-386157/) · CC0 Content
