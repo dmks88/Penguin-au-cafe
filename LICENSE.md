@@ -9,7 +9,7 @@ No license is granted to distribute,
 publish, sublicense, or create derivative works from this
 software, in whole or in part.
 
-Any use of this software beyond passive review requires
+Any use of this software beyond review and education requires
 explicit prior written permission from the copyright holder.
 
 This software is provided "as is", without warranty of any kind,
